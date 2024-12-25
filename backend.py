@@ -13,10 +13,7 @@ class function:
         self.updatelist()
     
     def deltask(self):
-        count=1
-        for task in function.task_indexed:
-            print(str(count)+". "+task)
-            count+=1
+        self.viewtask()
         choice=int(input("Choose the task (1-"+str(len(function.tasks))+") you want to delete? "))
         del function.tasks[function.task_indexed[choice-1]]
         print("Task has been deleted.")
@@ -25,9 +22,15 @@ class function:
     def viewtask(self):
         count=1
         for task in function.task_indexed:
-            print(str(count)+". "+task)
+            print(str(count)+". "+task+" - "+function.tasks[task])
             count+=1
 
+    def marktask(self):
+        self.viewtask()
+        choice=int(input("Choose the task (1-"+str(len(function.tasks))+") you want to mark? "))
+        function.tasks[function.task_indexed[choice-1]]="Complete"
+        print("Task has been marked.")
+        
 
     def updatelist(self):
         function.task_indexed=list(function.tasks.keys())
